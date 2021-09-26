@@ -106,3 +106,25 @@ print(func(score))
 x  = eval(input('请输入年份'))
 print('闰年') if (x//400==0)|(x//4==0 and x//100!=0) else print('不是闰年')
 ```
+for与while循环结构都有else可选子句
+### for循环的列表推导式
+```python
+s = 0
+for i in range(64):
+    s = s+ 2**i
+print(s)
+#列表推导式[循环体 表达式]
+a = sum([2**i for i range(64)])
+```
+### 通过循环遍历文件的内容 for line in file
+### 文件的读取操作
+- 1.打开文件 ----f.open(url,'r')返回一个文件对象 url=r'c:/text.text' (字符串之前加r保留原始字符串)
+- 2.读文件，写文件-----f.read()读文件 f.write()写文件
+- 3.关闭文件-------f.close()
+### 枚举 enumerate() 返回一个可迭代对象（可通过循环遍历）
+-  for i,v in enumerate(list,start=1开始元素): 用i,v保存索引和值
+```python
+list =['a','b','c']
+for i,v in enumerate(list,start=1):
+    print(i,v)
+```

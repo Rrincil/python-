@@ -1,0 +1,4 @@
+#读写文件
+f = open(r'E:\python学习资料\python-\1.text',"r",)
+content = f.read()
+print(content)

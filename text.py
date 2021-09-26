@@ -56,3 +56,9 @@ print(name[2]==name[-1])
 x  = eval(input('请输入年份'))
 
 print('闰年') if (x//400==0)|(x//4==0 and x//100!=0) else print('不是闰年')
+s = 0
+for i in range(64):
+    s = s+ 2**i
+print(s)
+#列表推导式
+a = sum([2**i for i in range(64)])
