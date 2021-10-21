@@ -23,7 +23,7 @@ for i,v in enumerate(list,start=1):
 
 #else 子句 遇到break或者return语句结束程序或者遇到错误或者异常，则不会执行else语句
 s = input()
-for i in s:
+for i in s:···
     if i not in '0123456789':
         break
 else:
