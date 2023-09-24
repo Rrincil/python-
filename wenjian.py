@@ -22,12 +22,12 @@ for i,v in enumerate(list,start=1):
     print(i,v)
 
 #else 子句 遇到break或者return语句结束程序或者遇到错误或者异常，则不会执行else语句
-s = input()
-for i in s:···
-    if i not in '0123456789':
-        break
-else:
-    print('所有字符串都是数字')
+# s = input()
+# for i in s:···
+#     if i not in '0123456789':
+#         break
+# else:
+#     print('所有字符串都是数字')
 
 #for循环嵌套
 X = 100
