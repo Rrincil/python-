@@ -40,16 +40,38 @@ print("字符串加上数字：",a1,a2)
 """
     3. python 的输入方式
 """
-#   3.1 是数字还是字符都将被作为字符串读取。如果想要接收数值，需要把接收到的字符串进行类型转换。例如，想要接收整型的数字并保存到变量num中
-a1 = int(input('请输入数字'))
+#  3.1 是数字还是字符都将被作为字符串读取。如果想要接收数值，需要把接收到的字符串进行类型转换。例如，想要接收整型的数字并保存到变量num中
+a1 = int(input('请输入数字：'))
 print(f'a1的值为：{a1}')
 print('a1的值为{}'.format(a1))
 print("a1的值为: %d"%a1)
 
+# 3.2 #eval()函数用来执行一个字符串表达式，并返回表达式的值。也可以用于返回数据本身的类型
+# eval()函数
+# 用来执行一个字符串表达式，并返回表达式的值。可以把字符串转化为list,dict ,tuple
+a2 = eval(input("请输入小数："))
+print("输出的是数字：%d"%a2)
+a3 = input("请输入字符串：")
+print(f'输出第一个字符：{a3[0]}')
+print('输出字符{}'.format(a3))
 
+# 3.3 多个输入
+a,b = input("请输入两个字符串，以空格隔开").split(" ")
+print(a+" "+b)
+c,d = eval(input("请输入两个数字比较大小以逗号隔开")) # eval() arg 1 must be a string, bytes or code object
+def bijiao():
+    if c > d:
+        return print(f'较大的值为{c}')
+    else:
+        return print(f'较大的值为{d}')
+bijiao()
+e,f,g = map(float,input("轻输入三个数字以空格隔开").split(" "))
+print('e,f,g的值分别为{}  {}  {}'.format(e,f,g))
 
-
-
+list1 = list(map(eval,input("请输入三个数字用空格隔开").split(" "))) #存入list列表
+for i in list1:
+    if i>0:
+        print(i)
 
 
 
