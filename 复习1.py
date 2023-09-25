@@ -267,11 +267,11 @@ print('字典的长度为：',len(dic1))
          使用def和使用lambda，定义的函数功能完全一致，只是lambda关键字定义的函数是匿名的，无法二次使用
 """
 
-# 7.1 匿名函数的使用
+"""# 7.1 匿名函数的使用
 def add(compute):
     return compute(6,1)
 
-add(lambda x,y:x+y)
+add(lambda x,y:x+y)"""
 
 
 """
@@ -279,3 +279,21 @@ add(lambda x,y:x+y)
     1. 打开文件; 2. 读取文件; 3. 关闭文件
 """
 # 8.1 文件的使用
+f =  open(r'E:/研究生文献/心得体会.txt','w+')
+print(f.read()) # 读文件 立即读取读取不到
+# w+模式，在进行文件读取的时候，默认是先写再读。但是我们确实没有写入任何东西呀？这是由于系统默认帮我们写入了一个空值，因此把原有内容覆盖了。
+# 所以再当我们读取文件中的内容的时候，发现读取为空。
+
+f.write("红红火火恍恍惚惚")
+f.seek(0)   # 指针归位
+print(f.read()) # 读文件
+f.close()
+
+
+# 8.2 read、readline、readlines的区别
+
+
+"""
+    9. python 异常
+    
+"""
