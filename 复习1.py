@@ -297,10 +297,12 @@ f.close()
     9. python 异常
 """
 # 9.1 基础异常
-"""    try:
+"""    
+    try:
         尝试执行的代码
     except：
 	    出现错误的处理"""
+
 
 
 # 9.1 指定异常类型 在程序执行时，可能会遇到不同类型的，并且需要针对不同类型的异常，做出不同的响应，这个时候就需要指定错误类型
@@ -322,10 +324,131 @@ except Exception as result:
     #打印错误信息
     print(result)
 else:
-    #没异常会执行的代码
+    #没异常会执行的代码****
     pass
-finally:
+finally:  # 不管是否出现异常都会执行
     #无论是否有异常，都会执行的代码
     print("无论是否存在异常，都会执行的代码")
 
 """
+
+# 9.2 常见的系统异常  都是继承自BaseException
+## （1） 除零异常  被除数为0  1/0  ZeroDivisionError: division by zero
+#1/0
+
+## （2） 名称异常 使用了未定义的变量 NameError: name 'xiao' is not defined
+#print(xiao)
+try:
+    print(xiao)
+except NameError:  #捕获NameError异常
+    print("变量不存在")
+
+
+## （3） 类型异常 "1"+2 类型使用不对 TypeError
+try:
+    print(1+"2")
+except TypeError:
+    print("类型异常")
+else:
+    print("没有出现异常")
+finally:
+    print("都会执行")
+## （4） 索引异常 超出索引的范围 IndexError
+
+## （5） 键异常 字典内并没有这个key KeyError
+
+## （6） 值异常 int("abc") 转型错误 ValueError
+
+## （7） 属性异常 索引对象中没有的属性 AttributeError
+
+## （8） 迭代器异常 迭代器超出范围 StopIteration
+## （9） 系统异常类继承树
+### BaseException ==> SystemExit
+###                   Keyboardlnterrupt 用户点击断键 ctr+c 中断
+###                   GerneratorExit 当调用generator的close()方法引发
+###                   Exception 所有的内置的、非系统退出异常是从该类派生的
+
+try:
+    #print(xiao)
+    print("1" + 2)
+except NameError as ae:  # except (NameError,TypeError)
+    print("名称异常",ae)
+    pass
+except TypeError:
+    print("类型异常")
+else:
+    print("没有异常")
+finally:
+    print("都会执行")
+
+try:
+    print("1" + 2)
+except Exception as e:
+    print("异常",e)
+
+
+## （10） 面向对象的上下文 管理异常
+
+class A:
+    def __init__(self,name):
+        self.name = name
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print(self, exc_type, exc_val, exc_tb)
+        import traceback
+        ##print(traceback,extract_tb)
+with A('00') as e:
+    print('报错会处理')
+    1/0
+
+# 10. 面向对象
+
+### 封装
+class Cat:
+    def __init__(self,name,age):
+        self._name = name  # 加_下划线 为私有成员变量
+        self.age = age
+
+    def catch(self):
+        foot = 80
+        return foot
+    def make_sound(self): # 抽象方法
+        pass
+a = Cat("小红",19)
+print('a',a._name)
+
+
+### 继承
+class RedCat(Cat):
+    total = 11
+    def __init__(self, name, age, sex):
+        super().__init__(name, age)#调用父类的构造函数
+       # self.name = name
+        self._sex = sex
+    def make_sound(self):
+        return "汪汪"
+
+    def catch(self):
+        return self.age
+
+    def Redcatch(self):
+        a = 200
+        return a
+
+    @classmethod    #类方法: 定义类方法需要使用‘@classmethod’装饰器。类方法的第一个参数必须是‘cls’，表示类本身，可以通过‘cls’来调用类属性和类方法。
+    def alltotal(cls):
+        cls.total = 10
+        print(cls.total)
+
+    @staticmethod
+    def one(x,y):
+        return print(x+y)
+red1 = RedCat('xiaohong',19,'男')
+print('red1',red1._name)
+red1.alltotal()
+red1.one(3,6)
+
+### 静态方法
+
+
+
+
