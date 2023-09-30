@@ -396,9 +396,9 @@ class A:
         print(self, exc_type, exc_val, exc_tb)
         import traceback
         ##print(traceback,extract_tb)
-with A('00') as e:
-    print('报错会处理')
-    1/0
+# with A('00') as e:
+#     print('报错会处理')
+#     1/0
 
 # 10. 面向对象
 
@@ -448,6 +448,85 @@ red1.alltotal()
 red1.one(3,6)
 
 ### 静态方法
+
+
+# 11 python 正则表达式
+## 11.1 r 代表原始字符串标识符 该字符串中的特殊符号不会被转义，适用于正则表达式中繁杂的特殊符号表示
+import re
+print('\n')
+print(r'\n')
+a = 'c:\\user\\desktop\\'
+print(a)  # c:\user\desktop\
+b = re.match('c:\\\\',a).group() # 假如你需要匹配文本中的字符”\”，那么使用编程语言表示的正则表达式里将需要4个反斜杠”\\\\”
+print(b) #c:\
+
+# 利用r
+b2 = re.match(r'c:\\u',a).group()
+print(b2) # c:\u
+
+## 11.2 re模块的使用：import re
+
+
+### (1)re.match(匹配的正则表达式,要匹配的字符串,标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等)
+### 如果不是起始位置匹配成功的话，match()就返回none。匹配成功re.match方法返回一个匹配的对象。
+### group⽅法来提取数据。以使用group(num) 或 groups() 匹配对象函数来获取匹配表达式
+result = re.match('he','hello,hekk')
+print(result.group())
+
+### (2) 匹配单个字符串
+
+#### 1. \d匹配数字即0-9   \D匹配⾮数字，即不是数字  从第一个字符开始比较 一旦有匹配不成功的字符则匹配失败
+a = '33斤斤计较HHHvvvv'
+print(re.match('\d',a).group()) # 3
+
+print(re.match('[0-9]',a).group()) #匹配0-9
+
+print(re.match('[0-36-9]',a).group()) # 匹配0-3和6-9
+print('===========')
+print(re.match('\d[0-3]斤斤计较[hH]',a).group())
+
+#print(re.match('[hH]',a).group()) # 匹配H或者h  匹配失败
+
+#### 2. 匹配多个字符  \s匹配空⽩，即空格，tab键; \S匹配非空白字符
+
+####   * 匹配前⼀个字符出现0次或者⽆限次，即可有可⽆    + 匹配前⼀个字符出现1次或者⽆限次，即⾄少有1次    ? 匹配前⼀个字符出现1次或者0次，即要么有1次，要么没有
+b = "你好呀啦啦啦啦啦啦啦啦啦Ahjjjjj"
+
+#：匹配出⼀个字符串第⼀个字⺟为⼤写字符，后⾯都是⼩写字⺟并且这些⼩写字⺟可有可⽆
+print(re.match('[A-Z][a-z]*','Aaaaaa').group())
+print(re.match('[A-Z][a-z]*','M').group())
+
+names = ['xiaohong','Xiaolang','liu','xiaolv']
+for i in  names:
+    if re.match('[Xx]+iao*[a-zA-Z]',i):
+        print(i,"有x|Xiao",names.index(i))
+    else:
+        print(i,'无',names.index(i))
+
+
+#    {m,n} 匹配前⼀个字符出现从m到n次，若省略m，则匹配0到n次，若省略n，则匹配m到无限次    {m}匹配前⼀个字符出现m次
+
+#    \s	匹配空⽩，即空格，tab键
+
+print(re.match('[hH][a-z]{,3}\s零{4}\S\S','Hccc 零零零零交换机').group())
+
+
+
+#### 3. 匹配开头
+emails = ["xiaoWang@163.com", "xiaoWang@163.comheihei", ".com.xiaowang@qq.com","xiaohongshu@tom.com","2576678387@qq.com"]
+for i in emails:
+    if re.match('(?!\.)[\S]{3,20}|[\w]{3-20}@[\w]{2-10}|[\S]{2-10}\.com$',i):
+        print(i,'是正确的邮箱',emails.index(i))
+    else:
+        print(i,'不是正确的邮箱',emails.index(i))
+
+
+#### 4. ；匹配分组
+#  | 匹配左右任意⼀个表达式
+
+
+
+
 
 
 
