@@ -513,6 +513,7 @@ print(re.match('[hH][a-z]{,3}\s零{4}\S\S','Hccc 零零零零交换机').group()
 
 
 #### 3. 匹配开头
+# （1）匹配邮箱
 emails = ["xiaoWang@163.com", "xiaoWang@163.comheihei", ".com.xiaowang@qq.com","xiaohongshu@tom.com","2576678387@qq.com"]
 for i in emails:
     if re.match('(?!\.)[\S]{3,20}|[\w]{3-20}@[\w]{2-10}|[\S]{2-10}\.com$',i):
@@ -520,6 +521,21 @@ for i in emails:
     else:
         print(i,'不是正确的邮箱',emails.index(i))
 
+
+# （2）匹配手机号
+phones  = ["19129880097","18288997740","1029800998","10239","13576889904"]
+for i in phones:
+     if re.match('13|15|18|19[0-9]{9}$',i):   #[\d]{9}$ 匹配以13 15 18 19 开头的11 位手机号
+        print(i,'是正确的手机号')
+     else:
+        print(i,'不是正确的手机号')
+
+#### 4. 贪婪匹配和堕落匹配
+a = '在干嘛？今天一起去玩吗？ 去网吧玩一个通宵'
+# （1） 贪婪匹配  (.*默认往多的去找)
+print(re.match('在.*玩',a).group())
+# （2） 惰性匹配  (?让*尽可能少的匹配结果)
+print(re.match('在.*？玩',a).group())
 
 #### 4. ；匹配分组
 #  | 匹配左右任意⼀个表达式
