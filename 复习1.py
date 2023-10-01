@@ -535,13 +535,36 @@ a = '在干嘛？今天一起去玩吗？ 去网吧玩一个通宵'
 # （1） 贪婪匹配  (.*默认往多的去找)
 print(re.match('在.*玩',a).group())
 # （2） 惰性匹配  (?让*尽可能少的匹配结果)
-print(re.match('在.*？玩',a).group())
+print(re.match('在.*？玩',a))
 
 #### 4. ；匹配分组
-#  | 匹配左右任意⼀个表达式
+#  1. | 匹配左右任意⼀个表达式
+#  2. () 分组
+#  3. \num 引用分组num匹配到的字符串
+## 匹配出 <html>hhhhhh<div>
+x = "<html>hhhhhh</div>"
+re1 = re.match('<[a-zA-Z]+>.*</[a-zA-Z]+>',x).group()
+print(re1)
 
+y = ["<html><div>标题</div></html>","<img>hhhhhh红红火火恍恍惚惚</img>","<p>内容</p>","hudfhjdhfhjdf",'<html>hhhh<html>',"<div>hhhh"]
+for i in y:
+    result = re.match('<[a-zA-Z]+>.*</[a-zA-Z]+>',i)
+    if result:
+        m = y.index(i)
+        print("含有标签：",f"第{m+1}个：",result.group())
+    else:
+        print("不含完整标签")
 
-
+# 4. (?P=name)  表示引用别名为name分组匹配到的字符串
+# 匹配以1结尾，以1开头的的11位手机号
+# phones = ["19129880091","18288997740","1029800998","10239","13576889901"]
+# for i in phones:
+#     result  =  re.match('(?P<name1>[1]{1})3|5|8|9[0-9]{8}(?P=name1)$',i)
+#     if result:
+#         m = phones.index(i)
+#         print(f"第{m+1}个是正确的手机号码：",result.group())
+#     else:
+#         print("不正确")
 
 
 
