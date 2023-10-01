@@ -568,5 +568,41 @@ for i in y:
 
 
 
+## 11.3 re.compile 函数  先生成一个正则表达式（ Pattern ）对象，再供 match() 和 search() 这两个函数使用。
 
+### 1. re.compile 与 match() 的使用
+pattern1 = re.compile('\d+')
+string1 = "hj哈124快速:导航34将 快大幅,降价 12"
+m = pattern1.match(string1,3,10)  ## 从第四个字符开始
+print(m.group())
+print(m.start())
+print(m.end())
+print(m.span())
+
+
+### 2. re.search函数re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配
+m1 = pattern1.search(string1)
+print(m1.group())
+
+
+### 3. re.findall函数  在字符串中找到正则表达式所匹配的所有子串，并返回一个列表，如果没有找到匹配的，则返回空列表
+m2 = pattern1.findall(string1)
+print(m2)
+
+### 4. re.finditer函数 在字符串中找到正则表达式所匹配的所有子串，并把它们作为一个迭代器返回
+m3 = pattern1.finditer(string1)
+print(m3)
+for i in m3:
+    print(i.group())
+print('===============')
+
+### 5. re.sub函数  re.sub(pattern, repl, string, count=0, flags=0):可选参数，count 是要替换的最大次数 flag 用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等
+m4 = re.sub(pattern1,"666",string1,2)
+print(m4)
+
+###  6. re.subn函数
+
+### 7. re.split函数  re.split(pattern, string, maxsplit=0, flags=0): 返回⼀个列表
+m6 = re.split(':| |,',string1)
+print(m6)
 
